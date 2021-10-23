@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import useMatch from './hooks/useMatch';
 
 function App() {
+  const match = useMatch("AYZz5OYC8wkM272brV3c");
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +19,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={() => console.log(match)}>Hi</button>
       </header>
     </div>
   );
