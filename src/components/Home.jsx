@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Context } from "../Context";
 import Heading from "./Heading";
-import useUser from "../hooks/useUser";
 
 export default function Home() {
     const history = useHistory();

@@ -6,8 +6,8 @@ import useUser from "../hooks/useUser";
 
 export default function MatchReqPage() {
     const { id: userID } = useParams();
-    const user = useUser(userID);
-    const userRef = doc(db, "users", userID);
+    //const user = useUser(userID);
+    const userRef = doc(db, `users/${userID || "baka"}`);
 
     // Variables for checking if certain buttons are clicked
     var spBadmClicked = false;

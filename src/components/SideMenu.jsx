@@ -61,11 +61,11 @@ export default function SideMenu() {
                                 onLoad={event => setSelectedSport(event.target.value)}
                             >
                                 <option value="">Choose a Sport</option>
-                                {Object.entries(user.sports).map(([sport, _]) =>
+                                {/* {Object.entries(user.sports).map(([sport, _]) =>
                                     <option key={sport} value={sport}>
                                         {capitalizeAllWords(sport)}
                                     </option>
-                                )}
+                                )} */}
                             </select>
                             {selectedSport && <p>Rating: {user.sports[selectedSport]?.rating}</p>}
                         </div>
