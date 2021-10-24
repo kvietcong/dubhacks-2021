@@ -2,6 +2,7 @@ import "../App.css";
 import logo from "../logo.svg";
 import { useContext } from "react";
 import { Context } from "../Context";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     const { user, setUserID } = useContext(Context);
@@ -30,6 +31,7 @@ export default function Home() {
                 <input type="text" onChange={evt =>
                     setUserID(evt.target.value)
                 } />
+                <Link to="users/DqRkh7gfja6GPiVHZ0f4">To Joobah</Link>
             </header>
         </div>
     )
