@@ -39,7 +39,7 @@ export default function SideMenu() {
                     minWidth: "275px",
                 }}
             >
-                {console.log(user) || user ? <>
+                {user ? <>
                     <img src={user.profilePicture} alt="Profile Portrait" />
                     <h2>{user.displayName}</h2>
                     <select
@@ -54,7 +54,7 @@ export default function SideMenu() {
                             </option>
                         )}
                     </select>
-                    {selectedSport && <p>Rating: {user.sports[selectedSport].rating}</p>}
+                    {selectedSport && <p>Rating: {user.sports[selectedSport]?.rating}</p>}
                 </>
                     :
                     <Link to="/login">Login to Matchify</Link>
