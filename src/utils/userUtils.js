@@ -18,7 +18,11 @@ export const initializeUser = (displayName, profilePicture, email) => {
         following: [],
         phone: null,
         email: email,
-        sports: {},
+        sports: {
+            "badminton": [],
+            "table_tennis": [],
+            "tennis": []
+        },
         preferences: {
             "gender": [],
             "mode": [],
