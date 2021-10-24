@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router"
 import { Context } from "../Context";
 import useUser from "../hooks/useUser";
@@ -6,8 +6,10 @@ import { capitalizeAllWords } from "../utils/general";
 
 export default function UserPage() {
     const { id: userID } = useParams();
-    const user = useUser(userID);
     const { user: currentUser } = useContext(Context);
+
+    const user = useUser(userID);
+    const [ selectedSport, setSelectedSport ] = useState("");
 
     return user ? (
         <div>
@@ -21,14 +23,19 @@ export default function UserPage() {
             </div>
             <hr/>
             <div>
-                <h2>Sports</h2>
-                <ul>
+                <select
+                    value={selectedSport}
+                    onChange={event => setSelectedSport(event.target.value)}
+                    onLoad={event => setSelectedSport(event.target.value)}
+                >
+                    <option value="">Choose a Sport</option>
                     {Object.entries(user.sports).map(([sport, score]) =>
-                        <li key={sport}>
-                            {capitalizeAllWords(sport)} with {score} Elo
-                        </li>
+                        <option key={sport} value={sport}>
+                            {capitalizeAllWords(sport)}
+                        </option>
                     )}
-                </ul>
+                </select>
+                {selectedSport && <p>Elo: {user.sports[selectedSport]}</p>}
             </div>
             <div>
                 <h2>Contact Info</h2>
@@ -43,7 +50,7 @@ export default function UserPage() {
                 }
             </div>
             <div>
-                <h2>Pending Events</h2>
+                <h2>Upcoming Events</h2>
                 <ul>
                     <li>Event 1</li>
                     <li>Event 2</li>

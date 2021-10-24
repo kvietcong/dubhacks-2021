@@ -1,10 +1,12 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
+import Login from "./components/Login";
 import MatchReqPage from "./components/MatchReqPage";
+import Navigation from "./components/Navigation";
 import NotFound from "./components/NotFound";
+import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
 import UsersPage from "./components/UsersPage";
-import Navigation from "./components/Navigation";
 import { ContextProvider } from "./Context";
 
 function App() {
@@ -13,17 +15,23 @@ function App() {
       <BrowserRouter>
         <Navigation/>
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
           <Route exact path="/users/">
             <UsersPage />
           </Route>
           <Route exact path="/users/:id">
             <UserPage />
           </Route>
-          <Route exact path="/match/">
+          <Route exact path="/match">
             <MatchReqPage />
+          </Route>
+          <Route exact path="/login">
+            <Login/>
+          </Route>
+          <Route exact path="/profile">
+            <Profile/>
+          </Route>
+          <Route exact path="/">
+            <Home />
           </Route>
           <Route path="/">
             <NotFound />
