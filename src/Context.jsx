@@ -9,6 +9,7 @@ const ContextProvider = props => {
     const [ user, setUser ] = useState(null);
     const [ userID, setUserID ] = useState("")
     const [ isDarkMode, setIsDarkMode ] = useState(true);
+    const [ isShowingSidebar, setIsShowingSideBar ] = useState(false);
     const availableMatches = useMatchMaking(userID);
 
     useEffect(() => {
@@ -29,6 +30,7 @@ const ContextProvider = props => {
             user, setUser,
             userID, setUserID,
             isDarkMode, setIsDarkMode,
+            isShowingSidebar, setIsShowingSideBar,
             availableMatches,
         }}>
             {props.children}

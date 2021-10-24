@@ -1,10 +1,15 @@
+import { useContext } from "react";
+import { Context } from "../Context";
+
 export default function Heading() {
+    const { setIsShowingSideBar } = useContext(Context);
+
     return (
-        <div class="heading-container">
-            <span class="menu">
+        <div className="heading-container" onClick={() => setIsShowingSideBar(true)}>
+            <span className="menu">
                 <img src="resources/lines.svg" alt="menu"></img>
             </span>
-            <h1 class="heading">Matchify</h1>
+            <h1 className="heading">Matchify</h1>
         </div>
     );
 };

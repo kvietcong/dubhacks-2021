@@ -5,6 +5,7 @@ import MatchReqPage from "./components/MatchReqPage";
 import Navigation from "./components/Navigation";
 import NotFound from "./components/NotFound";
 import Profile from "./components/Profile";
+import SideMenu from "./components/SideMenu";
 import UserPage from "./components/UserPage";
 import UsersPage from "./components/UsersPage";
 import { ContextProvider } from "./Context";
@@ -14,6 +15,7 @@ function App() {
     <ContextProvider>
       <BrowserRouter>
         <Navigation/>
+        <SideMenu/>
         <Switch>
           <Route exact path="/users/">
             <UsersPage />
