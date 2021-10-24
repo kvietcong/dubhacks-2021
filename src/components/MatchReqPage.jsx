@@ -14,7 +14,7 @@ export default function MatchReqPage() {
     var spTablClicked = false;
     var spTennClicked = false;
     var tyCompClicked = false;
-    // var tyCasClicked = false;
+    var tyCasClicked = false;
     var mClicked = false;
     var fClicked = false;
     var oClicked = false;
@@ -59,37 +59,40 @@ export default function MatchReqPage() {
         } else {
             setDoc(userRef, {"sports.badminton.active": false});
         }
-        // if (spTablClicked) {
-        //     user.sports["table tennis"]?.active.value = true;
-        // } else {
-        //     user.sports["table tennis"]?.active.value = false;
-        // }
-        // if (spTennClicked) {
-        //     user.sports["tennis"]?.active.value = true;
-        // } else {
-        //     user.sports["tennis"]?.active.value = false;
-        // }
+        if (spTablClicked) {
+            setDoc(userRef, {"sports.table tennis.active": true});
+        } else {
+            setDoc(userRef, {"sports.table tennis.active": false});
+        }
+        if (spTennClicked) {
+            setDoc(userRef, {"sports.tennis.active": true});
+        } else {
+            setDoc(userRef, {"sports.tennis.active": false});
+        }
 
-        // // Set level of competitiveness
-        // user.preferences["mode"] = [];
-        // if (tyCompClicked) {
-        //     user.preferences["mode"].push("competitive");
-        // }
-        // if (tyCasClicked) {
-        //     user.preferences["mode"].push("casual");
-        // }
+        // Set level of competitiveness
+        var setMode;
+        if (tyCompClicked && tyCasClicked) {
+            db.collection('users').doc('user.preferences').set({"mode": ["competitive", "casual"]});
+        } else if (tyCompClicked) {
+            db.collection('users').doc('user.preferences').set({"mode": ["competitive"]});
+        } else if (tyCasClicked) {
+            db.collection('users').doc('user.preferences').set({"mode": ["casual"]});
+        } else {
+            db.collection('users').doc('user.preferences').set({"mode": []});
+        }
 
-        // // Set preferred genders to play with
-        // user.preferences["gender"] = [];
-        // if (mClicked) {
-        //     user.preferences["gender"].push("male");
-        // }
-        // if (fClicked) {
-        //     user.preferences["gender"].push("female");
-        // }
-        // if (oClicked) {
-        //     user.preferences["gender"].push("other");
-        // }
+        // Set preferred genders to play with
+        db.collection('users').doc('user.preferences').set({"gender": []});
+        if (mClicked) {
+            db.collection('users').doc('user.preferences').update({"gender": ["male"]});
+        }
+        if (fClicked) {
+            db.collection('users').doc('user.preferences').update({"gender": ["female"]});
+        }
+        if (oClicked) {
+            db.collection('users').doc('user.preferences').update({"gender": ["other"]});
+        }
 
         // // Set times available to play with all things
         // let days = document.getElementsByClassName("match-sel");
