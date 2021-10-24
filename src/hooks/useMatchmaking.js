@@ -32,8 +32,8 @@ const useMatchmaking = userID => {
             // ratings logic goes here
             // todo: sports -> ratings map should be replaced with a map with more detailed info
             let sports = [];
-            Object.entries(user.sports).forEach(([sport, rating]) => {
-                if (sport in otherUser.sports) {
+            Object.entries(user.sports).forEach(([sport, data]) => {
+                if (data["active"] && sport in otherUser.sports && otherUser.sports[sport]["active"]) {
                     sports.push(sport);
                 }
             });
