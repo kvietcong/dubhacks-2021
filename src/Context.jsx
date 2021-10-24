@@ -6,7 +6,7 @@ const Context = createContext();
 
 const ContextProvider = props => {
     const [ user, setUser ] = useState(null);
-    const [ userID, setUserID ] = useState(null)
+    const [ userID, setUserID ] = useState("")
     const [ isDarkMode, setIsDarkMode ] = useState(true);
 
     useEffect(() => {
