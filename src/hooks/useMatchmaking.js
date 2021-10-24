@@ -11,8 +11,6 @@ const useMatchmaking = userID => {
 
     for (let otherUser of users) {
         if (otherUser.id !== userID) {
-            result[otherUser.id] = {}
-
             // need to compare: mode
             // gender meets gender prefs
             // sport
@@ -26,7 +24,8 @@ const useMatchmaking = userID => {
                 continue;
             }
 
-            if (!user.preferences.gender.includes(otherUser.gender)) {
+            if (!user.preferences.gender.includes(otherUser.gender) || 
+                !otherUser.preferences.gender.includes(user.gender)) {
                 continue;
             }
 
@@ -67,15 +66,17 @@ const useMatchmaking = userID => {
                 }
             });
 
-            // result[otherUser.id]["timeoverlap"] = {}
+            if (!Object.keys(tempTimeOverlap).length) {
+                continue;
+            }
 
+            result[otherUser.id] = {}
             result[otherUser.id]["time overlap"] = tempTimeOverlap;
             result[otherUser.id]["mode"] = mode;
             result[otherUser.id]["sports"] = sports; // can include multiple; should return multiple options to end user
-            if (Object.keys(result[otherUser.id]).length === 0) result[otherUser.id] = undefined;
+            
         }
     }
-
 
     // return list of available match and times
     return result;
