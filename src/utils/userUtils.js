@@ -23,6 +23,7 @@ export const initializeUser = (displayName, profilePicture, email) => {
             "gender": [],
             "mode": [],
         },
+        pendingMatches: {},
     };
 };
 
