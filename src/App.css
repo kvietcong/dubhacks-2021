@@ -37,6 +37,12 @@
   }
 }
 
+ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 5px;
+  margin: 0; /* Remove margins */
+}
+
 .nav {
   /* display: none; */
 }
@@ -48,7 +54,7 @@
 .heading {
   color: #FF5858;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 800;
   display: inline;
 }
 
@@ -60,13 +66,22 @@
 .Home-heading {
   font-size: 14px;
   margin-left: 50px;
+  margin-top: 50px;
 }
 
 .Home-info {
-  border: 1px solid #FFC3C3;
+  border: 1px solid #FFE1E1;
+  background: #FFE1E1;
   border-radius: 10px;
   margin-left: 25px;
   margin-right: 25px;
+}
+
+.Home-match > img {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .Landing-main {

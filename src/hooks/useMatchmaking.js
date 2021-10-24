@@ -75,6 +75,9 @@ const useMatchmaking = userID => {
             result[otherUser.id]["mode"] = mode;
             result[otherUser.id]["sports"] = sports; // can include multiple; should return multiple options to end user
             
+            // bad but it works
+            result[otherUser.id]["name"] = otherUser.displayName; 
+            result[otherUser.id]["rating"] = otherUser.sports[sports[0]]["rating"]; 
         }
     }
 

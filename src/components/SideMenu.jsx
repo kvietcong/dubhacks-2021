@@ -47,7 +47,7 @@ export default function SideMenu() {
                                 <h2 style={{display:"inline"}}>{user.displayName}</h2>
                                 <div className="SideMenu-rating">
                                     <img src="resources/star.svg" alt="star"/>
-                                    <h4>0.0</h4>
+                                    <h4>{user.communityRating / 10}</h4>
                                 </div>
                             </div>
                         </div>
