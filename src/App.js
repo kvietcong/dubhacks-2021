@@ -1,12 +1,15 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 import UserPage from "./components/UserPage";
 import UsersPage from "./components/UsersPage";
+import { ContextProvider } from "./Context";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
+    <ContextProvider>
+      <BrowserRouter>
+        <Switch>
           <Route exact path="/">
             <Home />
           </Route>
@@ -17,10 +20,11 @@ function App() {
             <UserPage />
           </Route>
           <Route path="/">
-            <Home />
+            <NotFound />
           </Route>
         </Switch>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ContextProvider>
   );
 }
 
