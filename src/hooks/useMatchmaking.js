@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import { db } from "../config/firebase";
-import { onSnapshot, doc, getDoc } from "firebase/firestore";
 import useUser from "./useUser";
 import useFirestoreCollection from "./useFirestoreCollection";
 
@@ -8,16 +5,12 @@ const useMatchmaking = userID => {
     const user = useUser(userID);
     const users = useFirestoreCollection("users");
 
-    // console.log(user.length != 0 && getDoc(user.following[0]).then(
-    //     (doc) => console.log(doc.data())
-    // ));
+    if (!user?.email) return {};
 
-    // { user : timeoverlap }
     let result = {};
 
     for (let otherUser of users) {
-        if (otherUser.id != userID) {
-            console.log(otherUser);
+        if (otherUser.id !== userID) {
             result[otherUser.id] = {}
 
             // need to compare: mode
@@ -45,7 +38,7 @@ const useMatchmaking = userID => {
                     sports.push(sport);
                 }
             });
-            if (sports.length == 0) {
+            if (sports.length === 0) {
                 continue;
             }
 
@@ -79,14 +72,12 @@ const useMatchmaking = userID => {
             result[otherUser.id]["time overlap"] = tempTimeOverlap;
             result[otherUser.id]["mode"] = mode;
             result[otherUser.id]["sports"] = sports; // can include multiple; should return multiple options to end user
-
-            console.log(result[otherUser.id]);
+            if (Object.keys(result[otherUser.id]).length === 0) result[otherUser.id] = undefined;
         }
     }
 
 
     // return list of available match and times
-    console.log(result);
     return result;
 };
 

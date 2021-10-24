@@ -1,6 +1,7 @@
 import { db } from "./config/firebase";
 import { doc, onSnapshot } from "@firebase/firestore";
 import React, { createContext, useEffect, useState } from "react";
+import useMatchMaking from "./hooks/useMatchmaking";
 
 const Context = createContext();
 
@@ -8,6 +9,7 @@ const ContextProvider = props => {
     const [ user, setUser ] = useState(null);
     const [ userID, setUserID ] = useState("")
     const [ isDarkMode, setIsDarkMode ] = useState(true);
+    const availableMatches = useMatchMaking(userID);
 
     useEffect(() => {
         const userRef = doc(db, `users/${userID || "baka"}`);
@@ -27,6 +29,7 @@ const ContextProvider = props => {
             user, setUser,
             userID, setUserID,
             isDarkMode, setIsDarkMode,
+            availableMatches,
         }}>
             {props.children}
         </Context.Provider>

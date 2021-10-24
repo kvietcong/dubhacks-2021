@@ -4,7 +4,7 @@ import { Context } from "../Context";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-    const { user, userID, setUserID } = useContext(Context);
+    const { user, userID, setUserID, availableMatches } = useContext(Context);
 
     return (
         <div>
@@ -23,6 +23,10 @@ export default function Home() {
                 type="text" value={userID}
                 onChange={event => setUserID(event.target.value)}
             />
+            <br/>
+            <button onClick={() => console.log(availableMatches)}>print avail matches</button>
+            <br/>
+            <button onClick={() => console.log(user)}>print logged in user</button>
         </div>
     )
 }

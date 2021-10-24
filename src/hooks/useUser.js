@@ -5,7 +5,7 @@ import { db } from "../config/firebase";
 const useUser = userID => {
     const [ user, setUser ] = useState(null);
     useEffect(() => {
-        let userRef = doc(db, `users/${userID}`);
+        let userRef = doc(db, `users/${userID || "baka"}`);
 
         const unsubscribe = onSnapshot(userRef, snapshot => {
             setUser({ id: snapshot.id, ...snapshot.data() });
