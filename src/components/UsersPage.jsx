@@ -14,9 +14,9 @@ export default function UsersPage() {
                     <details>
                         <summary>Sports</summary>
                         <ul>
-                            {Object.entries(user?.sports).map(([sport, elo]) =>
+                            {Object.entries(user?.sports).map(([sport, { rating }]) =>
                                 <li key={sport}>
-                                    {capitalizeAllWords(sport)}: {elo}
+                                    {capitalizeAllWords(sport)}: {rating}
                                 </li>
                             )}
                         </ul>

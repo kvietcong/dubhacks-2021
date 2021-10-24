@@ -30,13 +30,13 @@ export default function UserPage() {
                     onLoad={event => setSelectedSport(event.target.value)}
                 >
                     <option value="">Choose a Sport</option>
-                    {Object.entries(user.sports).map(([sport, score]) =>
+                    {Object.entries(user.sports).map(([sport, _]) =>
                         <option key={sport} value={sport}>
                             {capitalizeAllWords(sport)}
                         </option>
                     )}
                 </select>
-                {selectedSport && <p>Elo: {user.sports[selectedSport]}</p>}
+                {selectedSport && <p>Rating: {user.sports[selectedSport].rating}</p>}
             </div>
             <div>
                 <h2>Contact Info</h2>
