@@ -3,12 +3,14 @@ import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import UserPage from "./components/UserPage";
 import UsersPage from "./components/UsersPage";
+import Navigation from "./components/Navigation";
 import { ContextProvider } from "./Context";
 
 function App() {
   return (
     <ContextProvider>
       <BrowserRouter>
+        <Navigation/>
         <Switch>
           <Route exact path="/">
             <Home />
