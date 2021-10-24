@@ -2,13 +2,14 @@ import "../App.css";
 import { useContext } from "react";
 import { Context } from "../Context";
 import { Link } from "react-router-dom";
+import Heading from "./Heading";
 
-export default function Home() {
+export default function Landing() {
     const { user, userID, setUserID, availableMatches } = useContext(Context);
 
     return (
         <div>
-            <h1>Matchify</h1>
+            <Heading />
             <p>
                 Competition as a Service (CaaS): The future of social software
                 has come and we are here to exploit the living 💩 out of it.

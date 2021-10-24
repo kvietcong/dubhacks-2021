@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from "./components/Home";
+import Landing from "./components/Landing";
 import Login from "./components/Login";
 import MatchReqPage from "./components/MatchReqPage";
 import Navigation from "./components/Navigation";
@@ -31,7 +31,7 @@ function App() {
             <Profile/>
           </Route>
           <Route exact path="/">
-            <Home />
+            <Landing />
           </Route>
           <Route path="/">
             <NotFound />

@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.nav {
+  /* display: none; */
+}
+
+.heading-container {
+  margin-top: 15px;
+}
+
+.heading {
+  color: #FF5858;
+  font-size: 24px;
+  font-weight: bold;
+  display: inline;
+}
+
+.menu {
+  margin-left: 25px;
+  margin-right: 16px;
+}

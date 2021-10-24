@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Context } from "../Context";
+import Heading from "./Heading";
 
 export default function Profile() {
     const history = useHistory();
@@ -9,7 +10,7 @@ export default function Profile() {
 
     return (
         <div>
-            <h1>Matchify</h1>
+            <Heading />
             <section>
                 <h2>Current Requests</h2>
                 <ul>

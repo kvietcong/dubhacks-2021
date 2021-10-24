@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 export default function Navigation() {
     const { user } = useContext(Context);
 
+
+    // hide for now
     return (
-        <nav>
+        <nav className="nav">
             <ul>
                 <li>
-                    <Link to="/">Go Home</Link>
+                    <Link to="/">Go to Landing</Link>
                 </li>
                 <li>
                     <Link to="/users">Users</Link>
