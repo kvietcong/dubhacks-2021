@@ -1,9 +1,11 @@
 import "../App.css";
 import logo from "../logo.svg";
-import useMatch from '../hooks/useMatch';
+import { useContext } from "react";
+import { Context } from "../Context";
+import { Link } from "react-router-dom";
 
 export default function Home() {
-    const match = useMatch("AYZz5OYC8wkM272brV3c");
+    const { user, setUserID } = useContext(Context);
 
     return (
         <div className="App">
@@ -20,7 +22,16 @@ export default function Home() {
                 >
                     Learn React
                 </a>
-                <button onClick={() => console.log(match)}>Hi</button>
+                <h2>
+                    {user ?
+                        `Hello ${user.displayName}` :
+                        "No One is Logged In"
+                    }
+                </h2>
+                <input type="text" onChange={evt =>
+                    setUserID(evt.target.value)
+                } />
+                <Link to="users/DqRkh7gfja6GPiVHZ0f4">To Joobah</Link>
             </header>
         </div>
     )

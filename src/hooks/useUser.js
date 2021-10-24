@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { doc, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
-import { onSnapshot, doc } from "firebase/firestore";
 
 const useUser = userID => {
-    const [ user, setUser ] = useState([]);
+    const [ user, setUser ] = useState(null);
     useEffect(() => {
         let userRef = doc(db, `users/${userID}`);
 
