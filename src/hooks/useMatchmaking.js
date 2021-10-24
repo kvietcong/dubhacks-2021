@@ -17,16 +17,41 @@ const useMatchmaking = userID => {
 
     for (let otherUser of users) {
         if (otherUser.id != userID) {
-            // first check availability
-            //console.log(otherUser.availability);
+            console.log(otherUser);
+            result[otherUser.id] = {}
 
-            // day : [(start, end)]
-            // day : [(start, end)]
+            // need to compare: mode
+            // gender meets gender prefs
+            // sport
+            // then finally check time availability
+            let mode = "";
+            if (otherUser.preferences.mode.includes("competitive") && user.preferences.mode.includes("competitive")) {
+                mode = "competitive";
+            } else if (otherUser.preferences.mode.includes("casual") && user.preferences.mode.includes("casual")) {
+                mode = "casual";
+            } else {
+                continue;
+            }
+
+            if (!user.preferences.gender.includes(otherUser.gender)) {
+                continue;
+            }
+
+            // ratings logic goes here
+            // todo: sports -> ratings map should be replaced with a map with more detailed info
+            let sports = [];
+            Object.entries(user.sports).forEach(([sport, rating]) => {
+                if (sport in otherUser.sports) {
+                    sports.push(sport);
+                }
+            });
+            if (sports.length == 0) {
+                continue;
+            }
+
             let tempTimeOverlap = { }
             Object.entries(otherUser.availability).forEach(([day, availableTimes]) => {
                 tempTimeOverlap[day] = [];
-                // console.log(user.availability[day]);
-                // console.log(availableTimes); 
 
                 // iterate through start/end tuples
                 for (let time of availableTimes) {
@@ -48,13 +73,17 @@ const useMatchmaking = userID => {
                     }
                 }
             });
-            console.log(otherUser.id);
-            result[otherUser.id] = tempTimeOverlap;
+
+            // result[otherUser.id]["timeoverlap"] = {}
+
+            result[otherUser.id]["time overlap"] = tempTimeOverlap;
+            result[otherUser.id]["mode"] = mode;
+            result[otherUser.id]["sports"] = sports; // can include multiple; should return multiple options to end user
+
+            console.log(result[otherUser.id]);
         }
     }
 
-    //console.log(user.length != 0 && user.following[0].data());
-    //console.log(users);
 
     // return list of available match and times
     console.log(result);
