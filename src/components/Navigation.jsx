@@ -17,7 +17,7 @@ export default function Navigation() {
                     <Link to="/users">Users</Link>
                 </li>
                 <li>
-                    <Link to={user ? "/profile" : "/login"}>
+                    <Link to={user ? "/home" : "/login"}>
                         {user ? `Hello ${user.displayName}` : "Login"}
                     </Link>
                 </li>

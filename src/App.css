@@ -56,3 +56,79 @@
   margin-left: 25px;
   margin-right: 16px;
 }
+
+.Home-heading {
+  font-size: 14px;
+  margin-left: 50px;
+}
+
+.Home-info {
+  border: 1px solid #FFC3C3;
+  border-radius: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.Landing-main {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.Profile-image {
+  text-align: center;
+
+}
+
+.Profile-image > img {
+  width: 120px;
+  height: 120px;
+}
+
+.Profile-name {
+  text-align: center;
+  font-size: 24px;
+}
+
+.Profile-selector {
+  margin-top: 50px;
+}
+
+.Profile-selector > p {
+  display: inline;
+  margin-left: 30px;
+  font-size: 18px;
+}
+
+.Profile-selector > select {
+  border: none;
+  font-weight: bold;
+  font-family: 'Montserrat';
+  outline: none;
+  font-size: 18px;
+}
+
+.Profile-content {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.Profile-selector-img {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+.Profile-request {
+  font-size: 12px;
+  color: #FF5858;
+  text-decoration: underline;
+}
+
+.Profile-events {
+  background: #FFE1E1;
+  padding: 10px;
+}
+
+.Profile-container {
+  margin-left: 15px;
+}
