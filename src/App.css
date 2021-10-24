@@ -132,3 +132,36 @@
 .Profile-container {
   margin-left: 15px;
 }
+
+.SideMenu-bar {
+  padding: 25px;
+}
+
+.SideMenu-top > img {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.SideMenu-right {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.SideMenu-rating > img {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.SideMenu-rating > h4 {
+  display: inline-block;
+}
+
+.SideMenu-bar > select {
+  border: none;
+  font-weight: bold;
+  font-family: 'Montserrat';
+  outline: none;
+  font-size: 18px;
+}

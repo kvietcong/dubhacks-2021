@@ -40,21 +40,36 @@ export default function SideMenu() {
                 }}
             >
                 {user ? <>
-                    <img src={user.profilePicture} alt="Profile Portrait" />
-                    <h2>{user.displayName}</h2>
-                    <select
-                        value={selectedSport}
-                        onChange={event => setSelectedSport(event.target.value)}
-                        onLoad={event => setSelectedSport(event.target.value)}
-                    >
-                        <option value="">Choose a Sport</option>
-                        {Object.entries(user.sports).map(([sport, _]) =>
-                            <option key={sport} value={sport}>
-                                {capitalizeAllWords(sport)}
-                            </option>
-                        )}
-                    </select>
-                    {selectedSport && <p>Rating: {user.sports[selectedSport]?.rating}</p>}
+                    <div className="SideMenu-bar">
+                        <div className="SideMenu-top">
+                            <img src={user.profilePicture} alt="Profile Portrait" />
+                            <div className="SideMenu-right">
+                                <h2 style={{display:"inline"}}>{user.displayName}</h2>
+                                <div className="SideMenu-rating">
+                                    <img src="resources/star.svg" alt="star"/>
+                                    <h4>0.0</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="Profile-selector Profile-container" style={{marginTop:"20px"}}>
+                            <div className="Profile-selector-img">
+                                {selectedSport && <img src={`/resources/${selectedSport}.svg`} alt={selectedSport} />}
+                            </div>
+                            <select
+                                value={selectedSport}
+                                onChange={event => setSelectedSport(event.target.value)}
+                                onLoad={event => setSelectedSport(event.target.value)}
+                            >
+                                <option value="">Choose a Sport</option>
+                                {Object.entries(user.sports).map(([sport, _]) =>
+                                    <option key={sport} value={sport}>
+                                        {capitalizeAllWords(sport)}
+                                    </option>
+                                )}
+                            </select>
+                            {selectedSport && <p>Rating: {user.sports[selectedSport]?.rating}</p>}
+                        </div>
+                    </div>
                 </>
                     :
                     <Link to="/login">Login to Matchify</Link>
