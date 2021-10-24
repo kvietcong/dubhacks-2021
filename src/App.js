@@ -4,8 +4,8 @@ import Login from "./components/Login";
 import MatchReqPage from "./components/MatchReqPage";
 import Navigation from "./components/Navigation";
 import NotFound from "./components/NotFound";
+import Home from "./components/Home";
 import Profile from "./components/Profile";
-import UserPage from "./components/UserPage";
 import UsersPage from "./components/UsersPage";
 import { ContextProvider } from "./Context";
 
@@ -19,7 +19,7 @@ function App() {
             <UsersPage />
           </Route>
           <Route exact path="/users/:id">
-            <UserPage />
+            <Profile />
           </Route>
           <Route exact path="/match">
             <MatchReqPage />
@@ -27,8 +27,8 @@ function App() {
           <Route exact path="/login">
             <Login/>
           </Route>
-          <Route exact path="/profile">
-            <Profile/>
+          <Route exact path="/home">
+            <Home/>
           </Route>
           <Route exact path="/">
             <Landing />

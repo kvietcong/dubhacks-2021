@@ -1,10 +1,10 @@
 export default function Heading() {
     return (
-        <div class="heading-container">
-            <span class="menu">
-                <img src="resources/lines.svg" alt="menu"></img>
+        <div className="heading-container">
+            <span className="menu">
+                <img src="resources/lines.svg" alt="menu" />
             </span>
-            <h1 class="heading">Matchify</h1>
+            <h1 className="heading">Matchify</h1>
         </div>
     );
 };
