@@ -1,4 +1,7 @@
-export const initializeUser = (displayName, profilePicture) => {
+import { doc, setDoc, addDoc, collection } from "@firebase/firestore";
+import { db } from "../config/firebase";
+
+export const initializeUser = (displayName, profilePicture, email) => {
     return {
         availability: {
             "monday": [],
@@ -14,10 +17,32 @@ export const initializeUser = (displayName, profilePicture) => {
         profilePicture: profilePicture,
         following: [],
         phone: null,
+        email: email,
         sports: {},
         preferences: {
             "gender": [],
-            "mode": "casual",
+            "mode": [],
         },
     };
+};
+
+export const setUser = (userID, newUserData) => {
+    const userRef = doc(db, "users", userID);
+    setDoc(userRef, newUserData);
+    return userRef;
+};
+
+export const addUser = newUserData => {
+    const newUserRefPromise = addDoc(collection(db, "users"), newUserData);
+    return newUserRefPromise;
+};
+
+export const createNewUser = async (displayName, profilePicture, email) => {
+    const newUserData = initializeUser(displayName, profilePicture, email);
+    const newUserRef = await addUser(newUserData);
+    return newUserRef;
+};
+
+export const checkFollowing = (user, userID) => {
+    return user.following.map(({id}) => id).includes(userID);
 };

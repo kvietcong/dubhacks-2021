@@ -3,10 +3,11 @@ import { useParams } from "react-router"
 import { Context } from "../Context";
 import useUser from "../hooks/useUser";
 import { capitalizeAllWords } from "../utils/general";
+import { checkFollowing } from "../utils/userUtils";
 
 export default function UserPage() {
     const { id: userID } = useParams();
-    const { user: currentUser } = useContext(Context);
+    const { user: loggedInUser } = useContext(Context);
 
     const user = useUser(userID);
     const [ selectedSport, setSelectedSport ] = useState("");
@@ -39,12 +40,12 @@ export default function UserPage() {
             </div>
             <div>
                 <h2>Contact Info</h2>
-                {!currentUser ? <p>Login to Follow This User</p> :
-                user.following.map(({id}) => id)
-                    .includes(currentUser.id) || (currentUser.id === userID) ?
+                {!loggedInUser ? <p>Login to Follow This User</p> :
+                checkFollowing(user, loggedInUser.id)
+                || (loggedInUser.id === userID) ?
                     <ul>
                         <li>Email: {user.email}</li>
-                        <li>Phone: {user.phone}</li>
+                        <li>Phone: {user.phone || "No Phone Available"}</li>
                     </ul> :
                     <button>Request Follow</button>
                 }
@@ -56,7 +57,7 @@ export default function UserPage() {
                     <li>Event 2</li>
                 </ul>
             </div>
-            {currentUser
+            {loggedInUser
             ? <button>Request a Match</button>
             : <p>Login to request a match</p>}
         </div>
