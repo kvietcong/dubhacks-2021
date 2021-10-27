@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import MatchReqPage from "./components/MatchReqPage";
 import NotFound from "./components/NotFound";
-import UserPage from "./components/UserPage";
+import Profile from "./components/Profile";
 import UsersPage from "./components/UsersPage";
 import { ContextProvider } from "./Context";
 
@@ -18,7 +18,7 @@ function App() {
             <UsersPage />
           </Route>
           <Route exact path="/users/:id">
-            <UserPage />
+            <Profile />
           </Route>
           <Route exact path="/match/">
             <MatchReqPage />
