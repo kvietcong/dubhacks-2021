@@ -1,13 +1,14 @@
-import { doc, setDoc, collection } from "@firebase/firestore";
+import { doc, setDoc, updateDoc } from "@firebase/firestore";
 import { db } from "../config/firebase";
-import { useParams } from "react-router";
-import { setUser } from "../utils/userUtils";
-import useUser from "../hooks/useUser";
+// import { useParams } from "react-router";
+// import { setUser } from "../utils/userUtils";
+// import useUser from "../hooks/useUser";
+import { Context } from "../Context";
+import { useContext } from "react";
 
 export default function MatchReqPage() {
-    const { id: userID } = useParams();
-    //const user = useUser(userID);
-    const userRef = doc(db, `users/${userID || "baka"}`);
+    const { userID } = useContext(Context);
+    const userRef = doc(db, `users/${userID || "47qb4GwuWWWNZ3JhFSvC"}`);
 
     // Variables for checking if certain buttons are clicked
     var spBadmClicked = false;
@@ -55,78 +56,61 @@ export default function MatchReqPage() {
     function updateF() {
         // Set sports to clicked-on sports
         if (spBadmClicked) {
-            setDoc(userRef, {"sports.badminton.active": true});
+            updateDoc(userRef, {sports: {badminton: {active: true}}});
         } else {
-            setDoc(userRef, {"sports.badminton.active": false});
+            updateDoc(userRef, {sports: {badminton: {active: false}}});
         }
         if (spTablClicked) {
-            setDoc(userRef, {"sports.table tennis.active": true});
+            updateDoc(userRef, {sports: {tabletennis: {active: true}}});
         } else {
-            setDoc(userRef, {"sports.table tennis.active": false});
+            updateDoc(userRef, {sports: {tabletennis: {active: false}}});
         }
         if (spTennClicked) {
-            setDoc(userRef, {"sports.tennis.active": true});
+            updateDoc(userRef, {sports: {tennis: {active: true}}});
         } else {
-            setDoc(userRef, {"sports.tennis.active": false});
+            updateDoc(userRef, {sports: {tennis: {active: false}}});
         }
 
         // Set level of competitiveness
-        var setMode;
-        if (tyCompClicked && tyCasClicked) {
-            db.collection('users').doc('user.preferences').set({"mode": ["competitive", "casual"]});
-        } else if (tyCompClicked) {
-            db.collection('users').doc('user.preferences').set({"mode": ["competitive"]});
-        } else if (tyCasClicked) {
-            db.collection('users').doc('user.preferences').set({"mode": ["casual"]});
-        } else {
-            db.collection('users').doc('user.preferences').set({"mode": []});
+        let modes = [];
+        if (tyCompClicked) {
+            modes.push("competitive");
         }
+        if (tyCasClicked) {
+            modes.push("casual");
+        }
+        setDoc(userRef, {preferences: {mode: modes}});
 
         // Set preferred genders to play with
-        db.collection('users').doc('user.preferences').set({"gender": []});
-        if (mClicked) {
-            db.collection('users').doc('user.preferences').update({"gender": ["male"]});
+        let genders = [];
+        let gClicked = [mClicked, fClicked, oClicked];
+        let names = ["male", "female", "other"]
+        for (let i = 0; i < gClicked.length; i++) {
+            if (gClicked[i]) {
+                genders.push(names[i]);
+            }
         }
-        if (fClicked) {
-            db.collection('users').doc('user.preferences').update({"gender": ["female"]});
-        }
-        if (oClicked) {
-            db.collection('users').doc('user.preferences').update({"gender": ["other"]});
-        }
+        setDoc(userRef, {preferences: {gender: genders}});
 
-        // // Set times available to play with all things
+        // Set times available to play with all things
         // let days = document.getElementsByClassName("match-sel");
         // let starts = document.getElementsByClassName("start-time");
         // let ends = document.getElementsByClassName("end-time");
         // for (let i = 0; i < days.length; i++) {
         //     if (days[i] === "sunday") {
-        //         user.availability["sunday"].push([
-        //             {start : starts[i], end : ends[i]}
-        //         ])
+                
         //     } else if (days[i] === "monday") {
-        //         user.availability.monday.push([
-        //             {start : starts[i], end : ends[i]}
-        //         ])
+                
         //     } else if (days[i] === "tuesday") {
-        //         user.availability.tuesday.push([
-        //             {start : starts[i], end : ends[i]}
-        //         ])
+                
         //     } else if (days[i] === "wednesday") {
-        //         user.availability.wednesday.push([
-        //             {start : starts[i], end : ends[i]}
-        //         ])
+                
         //     } else if (days[i] === "thursday") {
-        //         user.availability.thursday.push([
-        //             {start : starts[i], end : ends[i]}
-        //         ])
+                
         //     } else if (days[i] === "friday") {
-        //         user.availability.friday.push([
-        //             {start : starts[i], end : ends[i]}
-        //         ])
+                
         //     } else if (days[i] === "saturday") {
-        //         user.availability.saturday.push([
-        //             {start : starts[i], end : ends[i]}
-        //         ])
+                
         //     }
         // }
         
@@ -187,9 +171,9 @@ export default function MatchReqPage() {
                     </button>
                 </div>
             </div>
-            <div className="enter" onClick={updateF()}>
+            <button className="enter" onClick={updateF()}>
                 Submit Matchify Request
-            </div>
+            </button>
         </div>
         
     )

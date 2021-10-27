@@ -7,7 +7,7 @@ const Context = createContext();
 
 const ContextProvider = props => {
     const [ user, setUser ] = useState(null);
-    const [ userID, setUserID ] = useState("")
+    const [ userID, setUserID ] = useState("");
     const [ isDarkMode, setIsDarkMode ] = useState(true);
     const [ isShowingSidebar, setIsShowingSideBar ] = useState(false);
     const availableMatches = useMatchMaking(userID);
